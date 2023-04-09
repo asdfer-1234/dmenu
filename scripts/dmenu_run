@@ -1,0 +1,17 @@
+#!/bin/sh
+execute=$(dmenu_path | dmenu "$@")
+if [ $? = 0 ]; then
+	terminal=( htop nvim vim absolutely-proprietary ranger alsamixer calcurse )
+	isterminal=false
+	for fn in ${terminal[@]}; do
+		if [ ${execute} = ${fn} ]; then
+			isterminal=true
+			break
+		fi
+	done
+	if [ ${isterminal} = true ]; then
+		st -e ${execute} 
+	else
+		${execute} | ${SHELL:-"/bin/sh"}
+	fi
+fi
