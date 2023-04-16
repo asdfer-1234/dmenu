@@ -10,8 +10,8 @@ if [ $? = 0 ]; then
 		fi
 	done
 	if [ ${isterminal} = true ]; then
-		st -e ${execute} 
+		st -e ${execute} &
 	else
-		${execute} | ${SHELL:-"/bin/sh"}
+		echo ${execute} | ${SHELL:-"/bin/sh"} &
 	fi
 fi
