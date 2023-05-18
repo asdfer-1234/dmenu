@@ -1,9 +1,9 @@
 #!/bin/bash
 se=$(echo -e "poweroff\nreboot\ntty" | dmenu $@ -p 'exit')
 if [ "$se" = "poweroff" ]; then
-	systemctl poweroff
+	systemctl poweroff -i
 elif [ "$se" = "reboot" ]; then
-	systemctl reboot
+	systemctl reboot -i
 elif [ "$se" = "tty" ]; then
 	pkill dwm
 fi

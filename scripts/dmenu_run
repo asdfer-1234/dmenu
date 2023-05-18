@@ -1,16 +1,17 @@
 #!/bin/sh
+set -v
 execute=$(dmenu_path | dmenu "$@")
 if [ $? = 0 ]; then
-	terminal=( htop nvim vim absolutely-proprietary ranger alsamixer calcurse )
+	terminal=( htop nvim vim absolutely-proprietary ranger alsamixer calcurse nmtui newsboat )
 	isterminal=false
 	for fn in ${terminal[@]}; do
-		if [ ${execute} = ${fn} ]; then
+		if [ $(echo ${execute} | awk '{print $1;}') == ${fn} ]; then
 			isterminal=true
 			break
 		fi
 	done
 	if [ ${isterminal} = true ]; then
-		st -e ${execute} &
+		alacritty -e ${execute} &
 	else
 		echo ${execute} | ${SHELL:-"/bin/sh"} &
 	fi
