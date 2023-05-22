@@ -2,7 +2,7 @@
 set -v
 execute=$(dmenu_path | dmenu "$@")
 if [ $? = 0 ]; then
-	terminal=( htop nvim vim absolutely-proprietary ranger alsamixer calcurse nmtui newsboat )
+	terminal=( htop nvim vim absolutely-proprietary ranger alsamixer calcurse nmtui newsboat nmtui-connect nmtui-hostname nmtui-edit )
 	isterminal=false
 	for fn in ${terminal[@]}; do
 		if [ $(echo ${execute} | awk '{print $1;}') == ${fn} ]; then
